@@ -36,44 +36,6 @@ then refer to it as:
     $customers = $customer->getCustomersByZip("33511");
 ```
 
-An OOP interface also allows your data to be "smart". For example, the classic `order` and `order line items` paradigm: when an order is deleted, you want to make sure that all line items associated with that order are also deleted.
-```
-	/** 
-	 * delete an order
-	 * 
-	 * @param integer $key	the 'oid' to delete.
-	 * 
-	 * @return integer	-1 on error, 0 otherwise
-	 */
-	public function delete($oid) {
-		$this->DB->autocommit(FALSE);		// do transactions for multiple table updates/deteles
-		
-		// 
-		// delete all line items for 'oid' from the line items table
-		// 
-		if (orderLineItemT::delete($oid) != 0) {
-			$this->DB->autocommit(TRUE);	// turn it back on
-			return -1;
-		}
-
-		// 
-		// delete 'oid' from the orders table
-		// 
-		$_key = intval($oid);
-		if (!$this->DB->query("DELETE FROM orders WHERE oid='$_key' LIMIT 1")) {
-			$this->_last_error = $DB->error; 
-			$this->DB->rollback();
-			$this->DB->autocommit(TRUE);	// turn it back on
-			return -1;			
-		}
-
-		$this->DB->commit();			// commit the changes
-		$this->DB->autocommit(TRUE);		// turn it back on
-		return 0;
-	}
-```
-Yes, you can build SQL rules on the server that can approximate this activity, but, it can be a vendor and version specific nightmare of a task to pull off in a production environment.
-
 
 
 ### Setup/config
@@ -149,8 +111,6 @@ where \<table_name\> is the name of the mysql table, and \<class_name\> is the c
 ```
     > php classy.php libchat_depart_online libChatDepartOnlineT>libChatDepartOnlineT.php
 ```
-<br>
-[An example of the code generated from the above command](https://github.com/springshare/tools/wiki/Classy-sample-output)
 
 
 ### Using the generated class
