@@ -2,7 +2,7 @@
 
 Classy will create PHP classes that provide an abstraction layer between the application and the database. This is not your typical database abstraction layer; it does NOT present a set of "safe" functions that your application can use to manipulate the database. Instead, it creates a class that presents a set of safe CRUD type functions to manipulate your DATA - regardless of how those data are managed.
 
-I have two general rules I try to follow regarding my apps and how they access data:
+I try to follow two general rules regarding my apps and how they access data:
 
   - The app should never use SQL statements in the business logic.
   - The app should never know, or care, what database engine it's talking to.
