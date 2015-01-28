@@ -83,7 +83,7 @@ At a command line prompt enter:
 ```
 where \<table_name\> is the name of the mysql table, and \<class_name\> is the class name to generate.
 ```
-    > php classy.php libchat_depart_online libChatDepartOnlineT>libChatDepartOnlineT.php
+    > php classy.php customer customerT>customerT.php
 ```
 
 
