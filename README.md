@@ -17,6 +17,9 @@ The generated classes present the db table in a classic OPP fashion, which also 
 - Handles tables with AUTO_INCREMENT key structure. _**For tables using more complex key structure it creates place-holders for that logic.**_
 <br>
 
+### Example class
+[Click to view a sample generated class](https://github.com/chriscurran/classy/wiki/Example-generated-class)
+
 ### Expanding
 The functions generated are the basic CRUD type functions. It is expected that you will add functions to the class to perform additional tasks. For example, lets say you had a customer table and wanted everyone in the 33511 zip code. Instead of:
 ```
