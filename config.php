@@ -18,9 +18,9 @@
 	// define db settings
 	//
 	$db_host = "127.0.0.1";
-	$db_user = "root";
-	$db_pw 	 = "ads6264";
-	$db_name = "forms";
+	$db_user = "user name";
+	$db_pw 	 = "user password";
+	$db_name = "database name";
 	$db_port = 3306;
 
 	date_default_timezone_set ("UTC");
