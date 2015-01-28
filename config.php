@@ -33,6 +33,7 @@
 		$db_pw 	 = "L7EZXhPjauYD2zRn";
 		$db_name = "libapps";
 		$db_name = "libsurveys";
+		$db_name = "api";
 		$db_port = 3309;
 	}
 
