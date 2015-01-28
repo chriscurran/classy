@@ -68,9 +68,6 @@ After setting these values, you will need to setup access to your mysql server. 
 	//
 	// local dev setup
 	//
-	set_include_path(get_include_path() . 
-		PATH_SEPARATOR . "answers/include/common");
-
 	$db_host = "localhost";
 	$db_user = "db_user_name";
 	$db_pw 	 = "db_user_password";
