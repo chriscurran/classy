@@ -2,7 +2,7 @@
 
 Classy will create PHP classes that provide an abstraction layer between the application and the database. This is not your typical database abstraction layer; it does NOT present a set of "safe" functions that your application can use to manipulate the database. Instead, it creates a class that presents a set of safe CRUD type functions to manipulate your DATA - regardless of how those data are managed.
 
-I have two general rules regarding my apps and how they access data:
+I have two general rules I try to follow regarding my apps and how they access data:
 
   - The app should never use SQL statements in the business logic.
   - The app should never know, or care, what database engine it's talking to.
@@ -54,6 +54,7 @@ There is no "config" file - control variables and defines are set at the top of 
         //
         define('DO_STANDARD', true);
         define('DO_PREPARED', true);
+        define('DO_STATIC', true);
 ```
 
 After setting these values, you will need to setup access to your mysql server. Edit as needed for your mysql connection.
@@ -61,43 +62,16 @@ After setting these values, you will need to setup access to your mysql server. 
 	// 
 	// define db settings based on what machine we're on
 	// 
-	define('AWS', (strpos(gethostname(),"springyaws")!==FALSE) );	
-	if (!AWS) {
-		//
-		// local dev setup
-		//
-		set_include_path(get_include_path() . 
-			PATH_SEPARATOR . "answers/include/common");
+	//
+	// local dev setup
+	//
+	set_include_path(get_include_path() . 
+		PATH_SEPARATOR . "answers/include/common");
 
-		$db_host = "localhost";
-		$db_user = "db_user_name";
-		$db_pw 	 = "db_user_password";
-		$db_name = "db_name";
-	}
-	else {
-		//
-		// AWS setup
-		//
-		set_include_path(get_include_path() . 
-			PATH_SEPARATOR . "libanswers/include/common");
-
-		// load Registry class. Also loads RedisServer class.
-		require_once "Registry.php";
-
-		// connect to the Registry using 'la.config' as the context
-		Registry::connect('la.config');
-
-		// load our system config object into the Registry
-		//	once loaded, can be accessed as 'Registry::$config' or 'Registry::get_config()'
-		Registry::load_config('sysConfig');
-
-		$db_host = Registry::$config->la_db->host;
-		$db_user = Registry::$config->la_db->user;
-		$db_pw   = Registry::$config->la_db->pw;
-		$db_name = Registry::$config->la_db->name;
-
-		date_default_timezone_set ("UTC");
-	}
+	$db_host = "localhost";
+	$db_user = "db_user_name";
+	$db_pw 	 = "db_user_password";
+	$db_name = "db_name";
 ```
 
 
